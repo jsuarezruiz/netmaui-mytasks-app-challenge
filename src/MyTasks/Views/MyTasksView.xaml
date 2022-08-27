@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"   	
+    xmlns:templates="clr-namespace:MyTasks.Views.Templates"
+    xmlns:controls="clr-namespace:MyTasks.Controls"
+    xmlns:cells="clr-namespace:MyTasks.Views.Cells"
+    x:Class="MyTasks.Views.MyTasksView"
+    BackgroundColor="{StaticResource WhiteColor}"
+    Title="Timeline">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ProfileStyle" TargetType="Image">
+                <Setter Property="HeightRequest" Value="80" />
+                <Setter Property="Margin" Value="12, 0" />
+            </Style>
+
+            <Style x:Key="NameTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="PoppinsRegular"/>
+                <Setter Property="FontSize" Value="{StaticResource FontSize28}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+            </Style>
+
+            <Style x:Key="JobTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="PoppinsLight"/>
+                <Setter Property="FontSize" Value="{StaticResource FontSize18}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+            </Style>
+
+            <Style x:Key="LineStyle" TargetType="BoxView">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+                <Setter Property="WidthRequest" Value="1" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid
+            RowSpacing="0"
+            RowDefinitions="250, 100, *">
+            <!-- TASK LIST -->
+            <Grid      
+                Grid.Row="1"
+                Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <BoxView  
+                    Grid.Column="0"
+                    BackgroundColor="Black"
+                    Style="{StaticResource LineStyle}" />
+                <ListView 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    ItemsSource="{Binding Tasks}"
+                    SelectionMode="None"
+                    HasUnevenRows="True"
+                    SeparatorVisibility="None">
+                    <ListView.Header>
+                        <templates:TaskHeaderTemplate />
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <cells:TaskItemViewCell />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <!-- HEADER -->
+            <Grid
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                ColumnDefinitions="80, *"
+                Margin="0, 0, 0, 40">
+                <BoxView  
+                    Grid.Column="0"
+                    BackgroundColor="Black"
+                    Style="{StaticResource LineStyle}" />
+                <Image   
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Aspect="AspectFill"
+                    Source="birdsfly.png">
+                    <Image.Clip>
+                        <PathGeometry 
+                            Figures="m 0 0 l 400 0 l 0 300 l -400 -50" />
+                    </Image.Clip>
+                </Image>
+                <!-- USER INFORMATION -->
+                <Grid 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    ColumnDefinitions="Auto, *"
+                    RowDefinitions="Auto, Auto"
+                    HeightRequest="120"
+                    VerticalOptions="End"
+                    Margin="12, 48">
+                    <Image    
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Source="face1.jpg"
+                        Aspect="AspectFit"
+                        Style="{StaticResource ProfileStyle}">
+                        <Image.Clip>
+                            <EllipseGeometry
+                                Center="40, 40"
+                                RadiusX="40"
+                                RadiusY="40" />
+                        </Image.Clip>
+                    </Image>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Text="Ryan Barnes"
+                        Style="{StaticResource NameTextStyle}"/>
+                    <Label 
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Text="Product Designer"
+                        Style="{StaticResource JobTextStyle}"/>
+                </Grid>
+            </Grid>
+            <!-- RADIAL MENU FILTER -->
+            <Grid        
+                Grid.Row="1"
+                HorizontalOptions="End"
+                Margin="0, 0, -24, 0">
+                <controls:FilterMenu 
+                    SelectedCommand="{Binding ItemSelectedCommand}"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
