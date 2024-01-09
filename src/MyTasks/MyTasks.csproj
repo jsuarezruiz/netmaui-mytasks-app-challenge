@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
 		<RootNamespace>MyTasks</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -49,24 +49,29 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
-	  <None Remove="Resources\Fonts\Poppins-Light.ttf" />
-	  <None Remove="Resources\Fonts\Poppins-Medium.ttf" />
-	  <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
-	  <None Remove="Resources\Fonts\Poppins-SemiBold.ttf" />
-	  <None Remove="Resources\Images\birdsfly.png" />
-	  <None Remove="Resources\Images\check.png" />
-	  <None Remove="Resources\Images\close_circle.png" />
-	  <None Remove="Resources\Images\face1.jpg" />
-	  <None Remove="Resources\Images\face2.jpg" />
-	  <None Remove="Resources\Images\face3.jpg" />
-	  <None Remove="Resources\Images\face4.jpg" />
-	  <None Remove="Resources\Images\face5.jpg" />
-	  <None Remove="Resources\Images\menu_circle.png" />
-	  <None Remove="Resources\Images\outer_circle.png" />
-	  <None Remove="Resources\Images\poweroff.png" />
-	  <None Remove="Resources\Images\time.png" />
-	  <None Remove="Resources\Images\warning.png" />
+		<None Remove="Resources\Fonts\Poppins-Bold.ttf" />
+		<None Remove="Resources\Fonts\Poppins-Light.ttf" />
+		<None Remove="Resources\Fonts\Poppins-Medium.ttf" />
+		<None Remove="Resources\Fonts\Poppins-Regular.ttf" />
+		<None Remove="Resources\Fonts\Poppins-SemiBold.ttf" />
+		<None Remove="Resources\Images\birdsfly.png" />
+		<None Remove="Resources\Images\check.png" />
+		<None Remove="Resources\Images\close_circle.png" />
+		<None Remove="Resources\Images\face1.jpg" />
+		<None Remove="Resources\Images\face2.jpg" />
+		<None Remove="Resources\Images\face3.jpg" />
+		<None Remove="Resources\Images\face4.jpg" />
+		<None Remove="Resources\Images\face5.jpg" />
+		<None Remove="Resources\Images\menu_circle.png" />
+		<None Remove="Resources\Images\outer_circle.png" />
+		<None Remove="Resources\Images\poweroff.png" />
+		<None Remove="Resources\Images\time.png" />
+		<None Remove="Resources\Images\warning.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.5" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.5" />
 	</ItemGroup>
 
 </Project>
